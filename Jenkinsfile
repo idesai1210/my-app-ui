@@ -3,9 +3,9 @@ pipeline {
   stages {
     stage('Setup') {
       steps {
-        sh '''sudo docker rm $(docker ps -q -f \'status=exited\')
-sudo docker rmi $(docker images -q -f "dangling=true")
-sudo docker volume rm $(docker volume ls -qf dangling=true)'''
+        sh '''sudo docker rm $(sudo docker ps -q -f \'status=exited\')
+sudo docker rmi $(sudo docker images -q -f "dangling=true")
+sudo docker volume rm $(sudo docker volume ls -qf dangling=true)'''
       }
     }
     stage('Build') {
