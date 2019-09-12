@@ -1,6 +1,7 @@
 # base image
 FROM node:12.6.0-alpine
 
+RUN apk add --update npm
 # set working directory
 WORKDIR /app
 
