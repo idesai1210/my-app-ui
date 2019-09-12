@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'sudo docker-compose down && sudo docker-compose up --force-recreate --build'
+        sh '''whoami
+sudo docker-compose down && sudo docker-compose up --force-recreate --build'''
       }
     }
   }
