@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'sudo docker-compose down && sudo docker-compose up -d'
+        sh 'docker ps -qa | xargs docker stop && sudo docker-compose down && sudo docker-compose up -d'
       }
     }
   }
