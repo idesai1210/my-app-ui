@@ -3,12 +3,25 @@ pipeline {
   stages {
     stage('Clean Up') {
       steps {
-        sh '''sudo docker rm -v $(sudo docker ps -aq -f \'status=exited\')
-if [ "$(docker images -f "dangling=true" -q | awk \'{print $3}\' | sort -u)x" != "x" ]
+        sh '''if [ "$(sudo docker ps -aq -f \'status=exited\'| awk \'{print $3}\' | sort -u)x" != "x" ]
 then
-       docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+     sudo docker rm -v $(sudo docker ps -aq -f \'status=exited\')
+
 fi
-sudo docker volume rm $(sudo docker volume ls -q -f \'dangling=true\')'''
+
+
+if [ "$(sudo docker images -f "dangling=true" -q | awk \'{print $3}\' | sort -u)x" != "x" ]
+then
+       sudo docker rmi $(sudo docker images --filter "dangling=true" -q --no-trunc)
+fi
+
+
+if [ "$(sudo docker volume ls -q -f \'dangling=true\' | awk \'{print $3}\' | sort -u)x" != "x" ]
+then
+       sudo docker volume rm $(sudo docker volume ls -q -f \'dangling=true\')
+fi
+
+'''
       }
     }
     stage('Build') {
