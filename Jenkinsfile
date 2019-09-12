@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Clean up') {
       steps {
-        sh 'docker ps -qa | xargs docker rm'
+        sh 'sudo docker ps -qa | sudo xargs docker rm'
       }
     }
     stage('Build') {
