@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'sudo docker-compose down && sudo docker-compose up --force-recreate --build -d'
+        sh 'docker rm $(docker ps -q -f \'status=exited\')'
       }
     }
   }
