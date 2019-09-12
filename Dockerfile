@@ -2,6 +2,7 @@
 FROM node:12.6.0-alpine
 
 RUN apk add --update npm
+RUN apk add --update git openssh
 # set working directory
 WORKDIR /app
 
