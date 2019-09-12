@@ -4,7 +4,10 @@ pipeline {
     stage('Clean Up') {
       steps {
         sh '''sudo docker rm -v $(sudo docker ps -aq -f \'status=exited\')
-sudo docker rmi $(sudo docker images -aq -f \'dangling=true\')
+if [ "$(docker images -f "dangling=true" -q | awk \'{print $3}\' | sort -u)x" != "x" ]
+then
+       docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+fi
 sudo docker volume rm $(sudo docker volume ls -q -f \'dangling=true\')'''
       }
     }
