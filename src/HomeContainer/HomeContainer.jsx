@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import FullWidthTabs from "FullWidthTabs";
+import ButtonTile from "../Components/ButtonTile";
+import DevicesGrid from "../Components/DevicesGrid";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,8 +24,9 @@ export default function HomeContainer() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Paper className={classes.paper}>xs=12</Paper>
-          <Paper className={classes.paper}>xs=12</Paper>
+          <Paper className={classes.paper}>
+            <DevicesGrid />
+          </Paper>
         </Grid>
         <Grid item xs={6}>
           <FullWidthTabs
